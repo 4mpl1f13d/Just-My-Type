@@ -68,11 +68,15 @@ $(document).ready(function () {
         }
 
         //Highlight the currently expected letter in the on-screen sentence that should be typed next
-        $('#yellow-block').css('left', '+=17.5px');
+        $('#yellow-block').css('left', '+=17px');
 
         letterIndex++;
         currentLetter = currentSentence[letterIndex];
         $('#target-letter').text(currentLetter);
+
+        //Start of timer
+        let startTime = Date.now();
+        // console.log(startTime);
 
         //test sentence check
         //console.log('letterIndex: '+ letterIndex + 'currentSentenceLength: ' + currentSentence.length);
@@ -81,7 +85,7 @@ $(document).ready(function () {
             if (sentIndex == sentences.length) {
                 gameover = true;
                 //$('#feedback').remove();
-                console.log('gameover');
+                alert('Game Over!');
             }
 
             if (!gameover) {
@@ -107,8 +111,8 @@ $(document).ready(function () {
                 $('#yellow-block').css('left', '2000px');
                 $('#feedback').remove();
 
-            //create timer and score
-
+                //Calculate Time to Type
+                console.log(Date.now()-startTime);
 
             }
 
@@ -118,7 +122,6 @@ $(document).ready(function () {
         $('#target-letter').text(currentLetter);
 
     })
-
 
 
 })
