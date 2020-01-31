@@ -112,7 +112,8 @@ $(document).ready(function () {
                 $('#feedback').remove();
 
                 //Calculate Time to Type
-                console.log(Date.now()-startTime);
+                let finishTime =Date.now()-startTime;
+                console.log('Finish time was: ' +finishTime+ ' ms');
 
             }
 
