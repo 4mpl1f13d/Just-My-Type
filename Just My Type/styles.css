@@ -1,6 +1,6 @@
 * {
   margin: 0;
-  padding: 0;	
+  padding: 0;
 }
 
 #prompt-container {
@@ -11,10 +11,12 @@
 
 #yellow-block {
   position: absolute;
-  margin-top: 10px;
-  width: 15px;
-  height: 15px;
+  margin-top: 4px;
+  width: 1px;
+  height: 25px;
   background-color: yellow;
+  border: solid gray;
+  border-width: 3px ;
 }
 
 .keyboard-container {
@@ -22,7 +24,7 @@
 }
 
 #target-letter {
-  font-size: 38px;  
+  font-size: 38px;
 }
 
 .keys-row {

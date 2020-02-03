@@ -6,9 +6,8 @@ let currentSentence = sentences[sentIndex];
 let currentLetter = currentSentence[letterIndex];
 
 let numberOfWords = 54;
-let mistakes = 0;
+var mistakes = 0;
 let gameover = false;
-
 
 $('#sentence').text(currentSentence);
 $('#target-letter').text(currentLetter);
@@ -50,6 +49,7 @@ $(document).ready(function () {
         $(`#${event.keyCode}`).css("background-color", "yellow");
 
         keyCharacter = e.keyCode;
+
         if (oldkeyChar != keyCharacter) {
             $(`#${oldkeyChar}`).css('background-color', '#f5f5f5')
         }
@@ -65,6 +65,7 @@ $(document).ready(function () {
         }
         else {
             $('#feedback').append('<span class="glyphicon glyphicon-remove"></span>');
+            mistakes++;
         }
 
         //Highlight the currently expected letter in the on-screen sentence that should be typed next
@@ -75,7 +76,7 @@ $(document).ready(function () {
         $('#target-letter').text(currentLetter);
 
         //Start of timer
-        let startTime = Date.now();
+        var startTime = Date.now();
         // console.log(startTime);
 
         //test sentence check
@@ -101,7 +102,7 @@ $(document).ready(function () {
                 $('#feedback').stop()
             };
 
-            console.log('gameover2' + gameover)
+            // console.log('gameover2' + gameover)
 
             //clear screen and display final score
             if (gameover == true) {
@@ -111,19 +112,32 @@ $(document).ready(function () {
                 $('#yellow-block').css('left', '2000px');
                 $('#feedback').remove();
 
+                // Add play again button after game is over
+                $('<button class="btn1" onClick="window.location.reload();">PLAY AGAIN?</button>').appendTo('#sentence');
+
+
                 //Calculate Time to Type
-                let finishTime =Date.now()-startTime;
-                console.log('Finish time was: ' +finishTime+ ' ms');
+                var finishTime = Date.now() - startTime;
+                var minTime = finishTime / 60000;
+                console.log('Finish time was: ' + finishTime + ' ms');
+                // Prepend average finish time minutes.
+                console.log("You finished in " + minTime + " minutes!");
+
+                //Calculate WPM and displayed on the screen when you reach the end of the last sentence (Can be calculated by: numberOfWords / minutes - 2 * numberOfMistakes)
+                var wpm = (numberOfWords / minTime) - (2 * mistakes);
+                alert("You typed " + wpm + " Words Per Minute");
+
 
             }
+
 
         };
 
         currentLetter = currentSentence[letterIndex];
         $('#target-letter').text(currentLetter);
 
-    })
 
+    })
 
 })
 
